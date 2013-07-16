@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en" ng-app="moduleApp">
+<head>
+  <meta charset="utf-8">
+  <title>{{page.title}} | Webinar Registration</title>
+  <link rel="stylesheet" href="css/app.css"/>
+</head>
+<body>
+
+<div ng-controller="FirstCtrl">
+  <input type="text" ng-model="data.message">
+  <h1>{{data.message}}</h1>
+</div>
+
+<div ng-controller="SecondCtrl">
+  <input type="text" ng-model="data.message">
+  <h1>{{reversedMessage(data.message)}}</h1>
+</div>
+
+  <div>Angular seed app: v<span app-version></span></div>
+
+  <!-- In production use:
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+  -->
+  <script src="lib/angular/angular.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/services.js"></script>
+  <script src="js/controllers.js"></script>
+  <script src="js/filters.js"></script>
+  <script src="js/directives.js"></script>
+  <script type="text/javascript">
+
+angular.module('moduleApp', ['Service']);
+
+angular.module('Service', [])
+  .factory('Data', function () {
+    return{message:"I'm data from a service."}
+  });
+
+
+function FirstCtrl($scope, Data) {
+  $scope.data = Data;
+}
+
+function SecondCtrl($scope) {
+  
+  $scope.data = {message : "1"};
+
+  $scope.reversedMessage = function(message){
+    return message.split("").reverse().join("");
+  }
+}
+
+</script>
+</body>
+</html>
